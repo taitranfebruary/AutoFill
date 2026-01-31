@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Auto Fill - Google Forms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-align: center;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .emoji {
+            font-size: 50px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .bookmarklet-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .bookmarklet-btn {
+            display: inline-block;
+            padding: 18px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: grab;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .bookmarklet-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+        .steps {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+        .steps h3 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .steps ol {
+            margin-left: 20px;
+            color: #555;
+            font-size: 14px;
+        }
+        .steps li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        .drag-hint {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="emoji">⚡</div>
+            <h1>Auto Fill Forms</h1>
+            <p class="subtitle">Tự động điền Google Forms</p>
+            
+            <div class="bookmarklet-container">
+                <a class="bookmarklet-btn" href="javascript:(function(){document.querySelectorAll('[role=radiogroup]').forEach(g=>{const opts=g.querySelectorAll('[role=radio][aria-checked=false]');if(opts.length){opts[Math.floor(Math.random()*opts.length)].click()}});document.querySelectorAll('[role=checkbox][aria-checked=false]').forEach((cb,i)=>{if(Math.random()>0.5||i<1)cb.click()});document.querySelectorAll('input[type=text],textarea').forEach(inp=>{if(!inp.value&&inp.offsetParent)inp.value='OK'});alert('✅ Done! Bấm Tiếp rồi click lại.')})();">
+                    ⚡ Auto Fill
+                </a>
+                <p class="drag-hint">👆 Kéo lên thanh Bookmark</p>
+            </div>
+            
+            <div class="steps">
+                <h3>Cách dùng:</h3>
+                <ol>
+                    <li>Kéo nút trên lên thanh Bookmark</li>
+                    <li>Mở Google Form cần điền</li>
+                    <li>Click bookmark → Tự điền</li>
+                    <li>Bấm Tiếp → Click lại → Lặp lại</li>
+                    <li>Trang cuối → Bấm Gửi</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

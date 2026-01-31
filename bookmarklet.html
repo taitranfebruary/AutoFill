@@ -100,22 +100,41 @@
             <p class="subtitle">Tự động điền Google Forms</p>
             
             <div class="bookmarklet-container">
-                <a class="bookmarklet-btn" href="javascript:(function(){document.querySelectorAll('[role=radiogroup]').forEach(g=>{const opts=g.querySelectorAll('[role=radio][aria-checked=false]');if(opts.length){opts[Math.floor(Math.random()*opts.length)].click()}});document.querySelectorAll('[role=checkbox][aria-checked=false]').forEach((cb,i)=>{if(Math.random()>0.5||i<1)cb.click()});document.querySelectorAll('input[type=text],textarea').forEach(inp=>{if(!inp.value&&inp.offsetParent)inp.value='OK'});alert('✅ Done! Bấm Tiếp rồi click lại.')})();">
-                    ⚡ Auto Fill
-                </a>
-                <p class="drag-hint">👆 Kéo lên thanh Bookmark</p>
+                <button class="bookmarklet-btn" id="copyBtn" style="cursor: pointer; border: none;">
+                    📋 Copy Code
+                </button>
+                <p class="drag-hint" id="status">👆 Click để copy code</p>
             </div>
             
             <div class="steps">
-                <h3>Cách dùng:</h3>
+                <h3>Cách dùng (Cực đơn giản!):</h3>
                 <ol>
-                    <li>Kéo nút trên lên thanh Bookmark</li>
-                    <li>Mở Google Form cần điền</li>
-                    <li>Click bookmark → Tự điền</li>
-                    <li>Bấm Tiếp → Click lại → Lặp lại</li>
-                    <li>Trang cuối → Bấm Gửi</li>
+                    <li><strong>Click nút "Copy Code"</strong> ở trên</li>
+                    <li><strong>Mở Google Form</strong> cần điền</li>
+                    <li>Bấm <strong>F12</strong> (hoặc Cmd+Option+J) → Chọn tab <strong>Console</strong></li>
+                    <li><strong>Paste</strong> (Ctrl+V) và bấm <strong>Enter</strong></li>
+                    <li>Bấm <strong>Tiếp</strong> → Lặp lại bước 4</li>
+                    <li>Trang cuối → <strong>Bấm Gửi</strong></li>
                 </ol>
             </div>
+            
+            <script>
+                const code = `(function(){document.querySelectorAll('[role=radiogroup]').forEach(g=>{const opts=g.querySelectorAll('[role=radio][aria-checked=false]');if(opts.length){opts[Math.floor(Math.random()*opts.length)].click()}});document.querySelectorAll('[role=checkbox][aria-checked=false]').forEach((cb,i)=>{if(Math.random()>0.5||i<1)cb.click()});document.querySelectorAll('input[type=text],textarea').forEach(inp=>{if(!inp.value&&inp.offsetParent)inp.value='OK'});alert('✅ Đã điền! Bấm Tiếp rồi chạy lại code.')})();`;
+                
+                document.getElementById('copyBtn').addEventListener('click', () => {
+                    navigator.clipboard.writeText(code).then(() => {
+                        const status = document.getElementById('status');
+                        status.textContent = '✅ Đã copy! Mở form → F12 → Console → Paste → Enter';
+                        status.style.color = '#28a745';
+                        setTimeout(() => {
+                            status.textContent = '👆 Click để copy code';
+                            status.style.color = '#888';
+                        }, 5000);
+                    }).catch(() => {
+                        alert('Lỗi copy! Thử lại hoặc copy thủ công.');
+                    });
+                });
+            </script>
         </div>
     </div>
 </body>
